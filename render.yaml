@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: springboot-nurseryproject
+    env: docker
+    repo: https://github.com/Ravikumar-M-08/NurserySpring
+    branch: main
+    region: oregon
+    plan: free
+    dockerfilePath: ./DockerFile  # Make sure this matches the actual file name
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:mysql://sql12.freesqldatabase.com:3306/sql12788447
+      - key: SPRING_DATASOURCE_USERNAME
+        value: sql12788447
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: qcVPcfnzw8
