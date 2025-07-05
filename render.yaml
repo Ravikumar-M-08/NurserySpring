@@ -6,7 +6,7 @@ services:
     branch: main
     region: oregon
     plan: free
-    dockerfilePath: ./DockerFile  # Make sure this matches the actual file name
+    dockerfilePath: ./Dockerfile  # Make sure this matches the actual file name
     envVars:
       - key: SPRING_DATASOURCE_URL
         value: jdbc:mysql://sql12.freesqldatabase.com:3306/sql12788447
