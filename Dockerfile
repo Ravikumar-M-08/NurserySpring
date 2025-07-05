@@ -9,7 +9,7 @@ FROM eclipse-temurin:21-jdk
 
 WORKDIR /app
 
-COPY --from=builder /app/terget*.jar app.jar
+COPY --from=builder /app/target*.jar app.jar
 
 EXPOSE 8080
 
