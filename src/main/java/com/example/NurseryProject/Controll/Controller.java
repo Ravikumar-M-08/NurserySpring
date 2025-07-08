@@ -14,7 +14,7 @@ import com.example.NurseryProject.Repo.Repository;
 import com.example.NurseryProject.Service.DataService;
 
 @RestController
-@CrossOrigin(origins = {"https://nurseryadmin.netlify.app/","https://nurseryuser.netlify.app/"})
+@CrossOrigin(origins = {"https://nurseryadmin.netlify.app/additems","https://nurseryuser.netlify.app/"})
 public class Controller {
 	@Autowired
 	private Repository repository;
