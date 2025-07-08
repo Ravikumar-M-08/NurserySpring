@@ -35,7 +35,7 @@ public class Controller {
 							@RequestParam("ProductCategery") String ProductCategery,
 							@RequestParam("ProductPrice") Integer ProductPrice) {
 		dataservice.createdata(ProductImg,ProductName,ProductDescription,ProductCategery,ProductPrice);
-//		return "Success";
+		// return "Success";
 	}
 	
 	// getting data from user and send to dataservice to update data into database
