@@ -16,7 +16,7 @@ import com.example.NurseryProject.Service.ContactService;
 
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:5173/","http://localhost:5174/"})
+@CrossOrigin(origins = {"https://nurseryadmin.netlify.app/","https://nurseryuser.netlify.app/"})
 public class ContactController {
 	@Autowired
 	private ContactRepo contactrepo;
