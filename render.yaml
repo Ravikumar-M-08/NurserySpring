@@ -9,8 +9,8 @@ services:
     dockerfilePath: ./Dockerfile  # Make sure this matches the actual file name
     envVars:
       - key: SPRING_DATASOURCE_URL
-        value: jdbc:mysql://sql.freedb.tech:3306/freedb_nurserydb
+        value: jdbc:mysql://sql12.freesqldatabase.com:3306/sql12790118
       - key: SPRING_DATASOURCE_USERNAME
-        value: freedb_nurseryuser
+        value: sql12790118
       - key: SPRING_DATASOURCE_PASSWORD
-        value: Nhv7NB%3jK&dP8b
+        value: dgScPNzGTb
