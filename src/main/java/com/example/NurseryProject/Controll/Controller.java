@@ -1,6 +1,5 @@
 package com.example.NurseryProject.Controll;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,52 +13,47 @@ import com.example.NurseryProject.Entity.Nursery;
 import com.example.NurseryProject.Repo.Repository;
 import com.example.NurseryProject.Service.DataService;
 
-import jakarta.servlet.http.HttpServletResponse; // or javax.servlet.* depending on your version
-
 @RestController
-@CrossOrigin(origins = { "https://nurseryadmin.netlify.app/", "https://nurseryuser.netlify.app/" })
+@CrossOrigin(origins = {"https://nurseryadmin.netlify.app/","https://nurseryuser.netlify.app/"})
 public class Controller {
 	@Autowired
 	private Repository repository;
-
+	
 	@Autowired
 	private DataService dataservice;
-
+	
+	
 	@GetMapping("/data")
-	public List<Nursery> getData() {
+	public List<Nursery> getData(){
 		return repository.findAll();
 	}
-
 	// getting data from user and send to dataservice to insert data into database
 	@PostMapping("/send")
 	public void createdata(@RequestParam("ProductImg") String ProductImg,
-			@RequestParam("ProductName") String ProductName,
-			@RequestParam("ProductDescription") String ProductDescription,
-			@RequestParam("ProductCategery") String ProductCategery,
-			@RequestParam("ProductPrice") Integer ProductPrice,
-			HttpServletResponse response) throws IOException {
-
-		dataservice.createdata(ProductImg, ProductName, ProductDescription, ProductCategery, ProductPrice);
-
-		// Redirect to your React page after successful POST
-		response.sendRedirect("https://nurseryuser.netlify.app/success");
+							@RequestParam("ProductName") String ProductName,
+							@RequestParam("ProductDescription") String ProductDescription,
+							@RequestParam("ProductCategery") String ProductCategery,
+							@RequestParam("ProductPrice") Integer ProductPrice) {
+		dataservice.createdata(ProductImg,ProductName,ProductDescription,ProductCategery,ProductPrice);
+		// return "Success";
 	}
-
+	
 	// getting data from user and send to dataservice to update data into database
 	@PostMapping("/update")
-	public void updateData(@RequestParam("ProductId") Integer ProductId,
+    public void updateData(@RequestParam("ProductId") Integer ProductId,
 			@RequestParam("ProductImg") String ProductImg,
 			@RequestParam("ProductName") String ProductName,
 			@RequestParam("ProductDescription") String ProductDescription,
 			@RequestParam("ProductCategery") String ProductCategery,
 			@RequestParam("ProductPrice") Integer ProductPrice) {
-		dataservice.updateData(ProductId, ProductImg, ProductName, ProductDescription, ProductCategery, ProductPrice);
-
-	}
-
+        dataservice.updateData(ProductId,ProductImg,ProductName,ProductDescription,ProductCategery,ProductPrice);
+//        return "Update successful";
+    }
+	
+	
 	@PostMapping("/delete")
 	public void deleteData(@RequestParam Integer PId) {
 		dataservice.deleteData(PId);
-		// return "Deletion Completed Successfully";
+//		return "Deletion Completed Successfully";
 	}
 }
