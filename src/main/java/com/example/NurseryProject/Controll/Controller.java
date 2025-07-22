@@ -1,5 +1,6 @@
 package com.example.NurseryProject.Controll;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.NurseryProject.Entity.Nursery;
 import com.example.NurseryProject.Repo.Repository;
 import com.example.NurseryProject.Service.DataService;
+
+import jakarta.servlet.http.HttpServletResponse; // or javax.servlet.* depending on your version
 
 @RestController
 @CrossOrigin(origins = { "https://nurseryadmin.netlify.app/", "https://nurseryuser.netlify.app/" })
@@ -29,25 +32,29 @@ public class Controller {
 
 	// getting data from user and send to dataservice to insert data into database
 	@PostMapping("/send")
-	public String createdata(@RequestParam("ProductImg") String ProductImg,
+	public void createdata(@RequestParam("ProductImg") String ProductImg,
 			@RequestParam("ProductName") String ProductName,
 			@RequestParam("ProductDescription") String ProductDescription,
 			@RequestParam("ProductCategery") String ProductCategery,
-			@RequestParam("ProductPrice") Integer ProductPrice) {
+			@RequestParam("ProductPrice") Integer ProductPrice,
+			HttpServletResponse response) throws IOException {
+
 		dataservice.createdata(ProductImg, ProductName, ProductDescription, ProductCategery, ProductPrice);
-		return "redirect:https://nurseryuser.netlify.app/success";
+
+		// Redirect to your React page after successful POST
+		response.sendRedirect("https://nurseryuser.netlify.app/success");
 	}
 
 	// getting data from user and send to dataservice to update data into database
 	@PostMapping("/update")
-	public String updateData(@RequestParam("ProductId") Integer ProductId,
+	public void updateData(@RequestParam("ProductId") Integer ProductId,
 			@RequestParam("ProductImg") String ProductImg,
 			@RequestParam("ProductName") String ProductName,
 			@RequestParam("ProductDescription") String ProductDescription,
 			@RequestParam("ProductCategery") String ProductCategery,
 			@RequestParam("ProductPrice") Integer ProductPrice) {
 		dataservice.updateData(ProductId, ProductImg, ProductName, ProductDescription, ProductCategery, ProductPrice);
-		return "redirect:https://nurseryuser.netlify.app/success";
+
 	}
 
 	@PostMapping("/delete")
