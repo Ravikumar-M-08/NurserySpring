@@ -14,46 +14,45 @@ import com.example.NurseryProject.Repo.Repository;
 import com.example.NurseryProject.Service.DataService;
 
 @RestController
-@CrossOrigin(origins = {"https://nurseryadmin.netlify.app/","https://nurseryuser.netlify.app/"})
+@CrossOrigin(origins = { "https://nurseryadmin.netlify.app/", "https://nurseryuser.netlify.app/" })
 public class Controller {
 	@Autowired
 	private Repository repository;
-	
+
 	@Autowired
 	private DataService dataservice;
-	
-	
+
 	@GetMapping("/data")
-	public List<Nursery> getData(){
+	public List<Nursery> getData() {
 		return repository.findAll();
 	}
+
 	// getting data from user and send to dataservice to insert data into database
 	@PostMapping("/send")
 	public String createdata(@RequestParam("ProductImg") String ProductImg,
-							@RequestParam("ProductName") String ProductName,
-							@RequestParam("ProductDescription") String ProductDescription,
-							@RequestParam("ProductCategery") String ProductCategery,
-							@RequestParam("ProductPrice") Integer ProductPrice) {
-		dataservice.createdata(ProductImg,ProductName,ProductDescription,ProductCategery,ProductPrice);
+			@RequestParam("ProductName") String ProductName,
+			@RequestParam("ProductDescription") String ProductDescription,
+			@RequestParam("ProductCategery") String ProductCategery,
+			@RequestParam("ProductPrice") Integer ProductPrice) {
+		dataservice.createdata(ProductImg, ProductName, ProductDescription, ProductCategery, ProductPrice);
 		return "redirect:https://nurseryuser.netlify.app/success";
 	}
-	
+
 	// getting data from user and send to dataservice to update data into database
 	@PostMapping("/update")
-    public void updateData(@RequestParam("ProductId") Integer ProductId,
+	public String updateData(@RequestParam("ProductId") Integer ProductId,
 			@RequestParam("ProductImg") String ProductImg,
 			@RequestParam("ProductName") String ProductName,
 			@RequestParam("ProductDescription") String ProductDescription,
 			@RequestParam("ProductCategery") String ProductCategery,
 			@RequestParam("ProductPrice") Integer ProductPrice) {
-        dataservice.updateData(ProductId,ProductImg,ProductName,ProductDescription,ProductCategery,ProductPrice);
-//        return "Update successful";
-    }
-	
-	
+		dataservice.updateData(ProductId, ProductImg, ProductName, ProductDescription, ProductCategery, ProductPrice);
+		return "redirect:https://nurseryuser.netlify.app/success";
+	}
+
 	@PostMapping("/delete")
 	public void deleteData(@RequestParam Integer PId) {
 		dataservice.deleteData(PId);
-//		return "Deletion Completed Successfully";
+		// return "Deletion Completed Successfully";
 	}
 }
