@@ -29,13 +29,13 @@ public class Controller {
 	}
 	// getting data from user and send to dataservice to insert data into database
 	@PostMapping("/send")
-	public void createdata(@RequestParam("ProductImg") String ProductImg,
+	public String createdata(@RequestParam("ProductImg") String ProductImg,
 							@RequestParam("ProductName") String ProductName,
 							@RequestParam("ProductDescription") String ProductDescription,
 							@RequestParam("ProductCategery") String ProductCategery,
 							@RequestParam("ProductPrice") Integer ProductPrice) {
 		dataservice.createdata(ProductImg,ProductName,ProductDescription,ProductCategery,ProductPrice);
-		// return "Success";
+		return "redirect:https://nurseryuser.netlify.app/success";
 	}
 	
 	// getting data from user and send to dataservice to update data into database
